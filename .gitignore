@@ -1,0 +1,47 @@
+# Archivos generados por LaTeX (excluyendo .pdf)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.lol
+*.nav
+*.out
+*.paux
+*.ptc
+*.run.xml
+*.snm
+*.synctex.gz
+*.synctex
+*.toc
+*.xdv
+
+# Archivos de dependencias/misceláneos
+*.bbl
+*.brf
+*.dvi
+*.synctex(busy)
+
+# Directorios de salida (si usas carpetas para archivos temporales)
+_tracked/
+_minted-*/
+
+# Archivos de edición (opcional, si quieres mantener limpio el repo)
+*.swp
+*.swo
+*~
+.#*
