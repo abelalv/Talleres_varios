@@ -1,0 +1,413 @@
+\documentclass[12pt, letterpaper]{article}
+
+% ── Paquetes ──────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+\usepackage{multicol}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% ── Encabezado y pie ──────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Álgebra Lineal}
+\fancyhead[C]{\small \textbf{Taller: Transformaciones Lineales}}
+\fancyhead[R]{\small 2026}
+\fancyfoot[C]{\thepage}
+
+% ── Colores ───────────────────────────────────────────────────────────
+\definecolor{azuloscuro}{RGB}{0, 70, 127}
+\definecolor{grisclaro}{RGB}{240, 240, 245}
+\definecolor{verdeclaro}{RGB}{220, 245, 220}
+
+% ── Entornos personalizados ───────────────────────────────────────────
+\newmdenv[
+  backgroundcolor=grisclaro,
+  linecolor=azuloscuro,
+  linewidth=1.5pt,
+  roundcorner=4pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt
+]{cajapregunta}
+
+\newmdenv[
+  backgroundcolor=verdeclaro,
+  linecolor=green!50!black,
+  linewidth=1pt,
+  roundcorner=4pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt
+]{cajarecordatorio}
+
+% ── Macros ────────────────────────────────────────────────────────────
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Ker}{\operatorname{Nuc}}   % núcleo
+\newcommand{\Img}{\operatorname{Im}}    % imagen
+\newcommand{\rango}{\operatorname{rango}}
+\newcommand{\nulidad}{\operatorname{nulidad}}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% ─────────────────────────────────────────────────────────────────────
+\begin{document}
+
+% ══ Portada ══════════════════════════════════════════════════════════
+\begin{center}
+  {\LARGE\bfseries\color{azuloscuro} Taller de Transformaciones Lineales}\\[6pt]
+  {\large Álgebra Lineal — Clase 2026}\\[4pt]
+  \rule{\linewidth}{1pt}\\[2pt]
+  \textbf{Nombre:}\underline{\hspace{8cm}}
+  \quad
+  \textbf{Fecha:}\underline{\hspace{3cm}}
+\end{center}
+
+\vspace{4pt}
+
+% ── Recordatorio teórico ─────────────────────────────────────────────
+\begin{cajarecordatorio}
+\textbf{Recordatorio.}
+Una función $T: V \to W$ es una \textbf{transformación lineal} si y solo si:
+\begin{enumerate}[label=(\roman*), itemsep=0pt]
+  \item $T(\mathbf{u}+\mathbf{v}) = T(\mathbf{u})+T(\mathbf{v})$ para todo $\mathbf{u},\mathbf{v}\in V$ \hfill (aditividad)
+  \item $T(c\,\mathbf{v}) = c\,T(\mathbf{v})$ para todo $\mathbf{v}\in V$, $c\in\R$ \hfill (homogeneidad)
+\end{enumerate}
+Equivalentemente: $T(c\,\mathbf{u}+d\,\mathbf{v})=c\,T(\mathbf{u})+d\,T(\mathbf{v})$.\\[4pt]
+\textbf{Núcleo} (Nuc): $\Ker(T)=\{\mathbf{v}\in V : T(\mathbf{v})=\mathbf{0}\}$,\quad
+\textbf{Imagen} (Im): $\Img(T)=\{T(\mathbf{v}) : \mathbf{v}\in V\}$.\\[2pt]
+\textbf{Teorema de la dimensión}: $\dim V = \nulidad(T) + \rango(T)$.
+\end{cajarecordatorio}
+
+\vspace{8pt}
+
+% ════════════════════════════════════════════════════════════════════
+\section*{\color{azuloscuro} Parte I — ¿Es una transformación lineal?}
+\textit{Para cada función determine si es una transformación lineal. Justifique rigurosamente usando las dos propiedades (o encuentre un contraejemplo).}
+
+\vspace{6pt}
+
+% ── Pregunta 1 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 1.}
+Sea $T:\R^2\to\R^3$ definida por
+\[
+  T\!\mat{x\\y} = \mat{x+y \\ 2x-y \\ 3y}.
+\]
+¿Es $T$ una transformación lineal? Si lo es, encuentre su matriz estándar $A$ tal que $T(\mathbf{x})=A\mathbf{x}$.
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{5cm}
+
+% ── Pregunta 2 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 2.}
+Sea $T:\R^2\to\R^2$ definida por
+\[
+  T\!\mat{x\\y} = \mat{x^2 \\ x+y}.
+\]
+¿Es $T$ una transformación lineal? Justifique su respuesta con un contraejemplo concreto si no lo es.
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{4cm}
+
+\newpage
+
+% ── Pregunta 3 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 3.}
+Sea $T:\R^3\to\R^2$ definida por
+\[
+  T\!\mat{x\\y\\z} = \mat{x - 2y + z \\ 3x + y - z}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Verifique que $T$ es una transformación lineal.
+  \item Calcule $T(\mathbf{u}+2\mathbf{v})$ directamente y usando la linealidad, donde
+        $\mathbf{u}=(1,0,-1)^T$ y $\mathbf{v}=(2,-1,3)^T$.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{6cm}
+
+% ════════════════════════════════════════════════════════════════════
+\section*{\color{azuloscuro} Parte II — Matriz de la transformación}
+\textit{Encuentre la matriz estándar de cada transformación lineal.}
+
+\vspace{6pt}
+
+% ── Pregunta 4 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 4.}
+La transformación $T:\R^2\to\R^2$ está definida por los siguientes valores sobre la base canónica:
+\[
+  T\!\mat{1\\0} = \mat{4\\-1}, \qquad T\!\mat{0\\1} = \mat{-2\\3}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Encuentre la matriz estándar $A$ de $T$.
+  \item Calcule $T(3,-5)^T$ usando $A$.
+  \item ¿Es $T$ invertible? Si lo es, encuentre $A^{-1}$ y calcule $T^{-1}(2,1)^T$.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{6cm}
+
+\newpage
+
+% ── Pregunta 5 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 5.}
+La transformación $T:\R^3\to\R^3$ aplica los vectores de la base canónica así:
+\[
+  T(\mathbf{e}_1) = \mat{1\\0\\-1},\quad
+  T(\mathbf{e}_2) = \mat{2\\1\\0},\quad
+  T(\mathbf{e}_3) = \mat{0\\-1\\3}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Construya la matriz estándar $A$ de $T$.
+  \item Calcule $\det(A)$. ¿Qué indica este valor sobre la transformación?
+  \item Calcule $T(1,2,-1)^T$.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{6cm}
+
+% ── Pregunta 6 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 6.}
+Sea $T:\R^2\to\R^2$ la transformación que \textbf{primero} refleja los vectores respecto al eje $x$ y \textbf{luego} los rota $90°$ en sentido antihorario.
+
+\begin{enumerate}[label=\alph*)]
+  \item Escriba la matriz de reflexión $R$ y la matriz de rotación $\Theta$.
+  \item La matriz compuesta es $A = \Theta\, R$. Calcule $A$.
+  \item ¿Coincide con invertir el orden ($A' = R\,\Theta$)? ¿Qué concluye?
+\end{enumerate}
+
+\textit{Recuerde:}
+$\text{Reflexión}_x = \mat{1&0\\0&-1}$,\quad
+$\text{Rotación}_{90°} = \mat{0&-1\\1&0}$.
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{6cm}
+
+\newpage
+
+% ════════════════════════════════════════════════════════════════════
+\section*{\color{azuloscuro} Parte III — Núcleo e Imagen}
+\textit{Para cada transformación, encuentre una base del núcleo y una base de la imagen.
+Verifique el Teorema de la Dimensión.}
+
+\vspace{6pt}
+
+% ── Pregunta 7 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 7.}
+Sea $T:\R^3\to\R^3$ la transformación con matriz estándar
+\[
+  A = \mat{1 & 2 & -1 \\ 2 & 4 & -2 \\ -1 & -2 & 1}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Encuentre una base para $\Ker(T)$ y calcule la nulidad de $T$.
+  \item Encuentre una base para $\Img(T)$ y calcule el rango de $T$.
+  \item Verifique el Teorema de la Dimensión.
+  \item ¿Es $T$ sobreyectiva? ¿Es inyectiva? Justifique.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{7cm}
+
+% ── Pregunta 8 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 8.}
+Sea $T:\R^4\to\R^3$ la transformación con matriz
+\[
+  A = \mat{1 & 0 & -1 & 2 \\ 0 & 1 & 3 & -1 \\ 2 & -1 & -5 & 5}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Reduzca $A$ a su forma escalonada reducida por filas.
+  \item Determine una base para $\Ker(T)$. ¿Cuántos parámetros libres tiene la solución?
+  \item Determine una base para $\Img(T)$.
+  \item Verifique: $\nulidad(T) + \rango(T) = \dim(\R^4)$.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{7cm}
+
+\newpage
+
+% ── Pregunta 9 ───────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 9.}
+Sea $T:\R^3\to\R^2$ definida por
+\[
+  T\!\mat{x\\y\\z} = \mat{x + y - z \\ 2x + 2y - 2z}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Escriba la matriz estándar $A$ de $T$.
+  \item Encuentre $\Ker(T)$ y determine $\nulidad(T)$.
+  \item Encuentre $\Img(T)$. ¿Es $\Img(T) = \R^2$? Justifique geométricamente.
+  \item ¿Es $T$ inyectiva? ¿Es sobreyectiva?
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{7cm}
+
+% ── Pregunta 10 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 10.}
+Sea $T:\R^2\to\R^3$ con matriz estándar
+\[
+  A = \mat{1 & -1 \\ 2 & 1 \\ 0 & 3}.
+\]
+\begin{enumerate}[label=\alph*)]
+  \item Calcule $\rango(A)$ y $\nulidad(A)$.
+  \item Describa geométricamente $\Img(T)$: ¿es un punto, una recta, un plano o todo $\R^3$?
+  \item Encuentre la ecuación implícita del subespacio $\Img(T)$ en $\R^3$.
+  \item ¿Para qué vectores $\mathbf{b}\in\R^3$ el sistema $A\mathbf{x}=\mathbf{b}$ tiene solución?
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Espacio de trabajo:}
+\vspace{7cm}
+
+\newpage
+
+% ════════════════════════════════════════════════════════════════════
+\section*{\color{azuloscuro} Parte IV — Preguntas teóricas}
+\textit{Responda de manera clara y justificada. Incluya demostraciones cuando se pida.}
+
+\vspace{6pt}
+
+% ── Pregunta 11 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 11 — Propiedad fundamental.}
+
+Demuestre que toda transformación lineal $T:V\to W$ cumple $T(\mathbf{0}_V)=\mathbf{0}_W$.
+
+\noindent\textit{Pista: use la propiedad de homogeneidad con $c=0$.}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Demostración:}
+\vspace{5cm}
+
+% ── Pregunta 12 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 12 — Núcleo como subespacio.}
+
+Sea $T:V\to W$ una transformación lineal. Demuestre que $\Ker(T)$ es un subespacio de $V$. Para ello verifique las tres condiciones:
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathbf{0} \in \Ker(T)$.
+  \item Si $\mathbf{u},\mathbf{v}\in\Ker(T)$, entonces $\mathbf{u}+\mathbf{v}\in\Ker(T)$.
+  \item Si $\mathbf{v}\in\Ker(T)$ y $c\in\R$, entonces $c\mathbf{v}\in\Ker(T)$.
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Demostración:}
+\vspace{6cm}
+
+\newpage
+
+% ── Pregunta 13 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 13 — Inyectividad y núcleo.}
+
+Sea $T:V\to W$ una transformación lineal. Demuestre que $T$ es \textbf{inyectiva} si y solo si $\Ker(T)=\{\mathbf{0}\}$.
+
+\noindent Esto es: demuestre \textbf{ambas} direcciones de la doble implicación.
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Demostración:}
+\vspace{8cm}
+
+% ── Pregunta 14 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 14 — Composición de transformaciones lineales.}
+
+Sean $T:\R^n\to\R^m$ y $S:\R^m\to\R^p$ transformaciones lineales con matrices estándar $A$ y $B$, respectivamente. Responda:
+\begin{enumerate}[label=\alph*)]
+  \item Demuestre que la composición $S\circ T:\R^n\to\R^p$ también es lineal.
+  \item Muestre que la matriz estándar de $S\circ T$ es el producto $BA$.
+  \item Dé un ejemplo concreto con $n=2$, $m=2$, $p=2$ donde $S\circ T \neq T\circ S$ (compare las matrices $BA$ y $AB$).
+\end{enumerate}
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Respuesta:}
+\vspace{7cm}
+
+\newpage
+
+% ── Pregunta 15 ──────────────────────────────────────────────────────
+\begin{cajapregunta}
+\textbf{Pregunta 15 — Conexión con el determinante y la invertibilidad.}
+
+Sea $T:\R^n\to\R^n$ una transformación lineal con matriz estándar $A$. Analice los siguientes enunciados y determine si son verdaderos o falsos, justificando cada uno:
+
+\begin{enumerate}[label=\alph*)]
+  \item Si $\det(A)=0$, entonces $T$ no es invertible.
+  \item Si $\det(A)\neq 0$, entonces $\Ker(T)=\{\mathbf{0}\}$.
+  \item Si $\rango(A)=n$, entonces $T$ es sobreyectiva.
+  \item Si $\nulidad(T)>0$, entonces $\det(A)=0$.
+  \item Una transformación puede ser inyectiva pero no sobreyectiva cuando $\dim(V)\neq\dim(W)$. Dé un ejemplo.
+\end{enumerate}
+
+\noindent\textit{Reflexión final}: explique con sus palabras cómo el determinante, el rango y la invertibilidad están todos interconectados en el estudio de las transformaciones lineales.
+\end{cajapregunta}
+
+\vspace{4pt}
+
+\noindent\textbf{Respuesta:}
+\vspace{10cm}
+
+% ══ Pie de página ════════════════════════════════════════════════════
+\vspace{1cm}
+\begin{center}
+\rule{\linewidth}{0.5pt}\\[4pt]
+\small\textit{``La transformación lineal es el puente entre la geometría y el álgebra.''} \\[2pt]
+\small Puntaje total: 100 puntos \quad|\quad Tiempo: 2 horas
+\end{center}
+
+\end{document}
